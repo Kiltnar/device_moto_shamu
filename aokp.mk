@@ -8,7 +8,7 @@ $(call inherit-product, vendor/aokp/configs/common.mk)
 # Inherit device configuration
 $(call inherit-product, device/moto/shamu/aosp_shamu.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/moto/shamu/overlay-cm
+DEVICE_PACKAGE_OVERLAYS += device/moto/shamu/overlay-aokp
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := aokp_shamu
