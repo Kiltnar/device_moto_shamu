@@ -142,10 +142,4 @@ BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS := \
     hardware/cyanogen/cmhw
 
-<<<<<<< HEAD
-# CMHW
-BOARD_HARDWARE_CLASS := device/moto/shamu/cmhw
-
-=======
->>>>>>> 4cce2fcfc55a860b25f16893af8a162b76ed67a3
 -include vendor/motorola/shamu/BoardConfigVendor.mk
