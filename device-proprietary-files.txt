@@ -131,6 +131,7 @@ vendor/lib/libchromatix_imx135_snapshot.so
 vendor/lib/libchromatix_imx135_video_hd.so
 vendor/lib/libchromatix_imx214_common.so
 vendor/lib/libchromatix_imx214_cpp.so
+vendor/lib/libchromatix_imx214_cpp_snap.so
 vendor/lib/libchromatix_imx214_default_video.so
 vendor/lib/libchromatix_imx214_hfr_120.so
 vendor/lib/libchromatix_imx214_hfr_60.so
@@ -225,18 +226,45 @@ etc/firmware/cpp_firmware_v1_2_0.fw
 etc/firmware/cpp_firmware_v1_6_0.fw
 etc/firmware/cpp_firmware_v1_8_0.fw
 
+# Capsense firmware
+vendor/firmware/cy8c20247_24lkxi.hex
+
+# CNE
+bin/cnd
+-priv-app/CNEService/CNEService.apk
+vendor/lib/libcne.so
+vendor/lib/libcneapiclient.so
+
+# Contacts adapter
+-priv-app/BuaContactAdapter/BuaContactAdapter.apk:priv-app/BuaContactAdapter/BuaContactAdapter.apk:PRESIGNED
+
 # Diagnostic
 bin/diag_klog
 bin/diag_mdlog
-bin/diag_qshrink4_daemon
-bin/PktRspTest
-bin/ramdump
-bin/rundiag
-bin/test_diag
-etc/diag/FIT_V12.cfg
-etc/diag/mdm/FIT_V12.cfg
+etc/diag/mdm/FIT_V16_1.cfg
+etc/diag/mdm/FIT_V16_2_volte_full_ip.cfg
+etc/diag/mdm/FIT_V16_3_audio.cfg
 etc/diag/mdm/sensors_qxdm.cfg
 etc/diag/sensors_qxdm.cfg
+
+# DM/Sprint
+-app/DMConfigUpdate/DMConfigUpdate.apk
+-app/HiddenMenu/HiddenMenu.apk
+etc/permissions/com.android.omadm.service.xml
+etc/sysconfig/whitelist_com.android.omadm.service.xml
+lib/libdmengine.so
+lib/libdmjavaplugin.so
+-priv-app/CQATest/CQATest.apk
+-priv-app/ConnMO/ConnMO.apk
+-priv-app/DCMO/DCMO.apk
+-priv-app/DMService/DMService.apk
+lib/libdmengine.so:priv-app/DMService/lib/arm/libdmengine.so
+lib/libdmjavaplugin.so:priv-app/DMService/lib/arm/libdmjavaplugin.so
+-priv-app/DiagMon/DiagMon.apk
+-priv-app/GCS/GCS.apk:priv-app/GCS/GCS.apk:PRESIGNED
+-priv-app/LifetimeData/LifetimeData.apk
+-priv-app/SprintDM/SprintDM.apk
+
 
 # DRM
 bin/qseecomd
@@ -248,9 +276,9 @@ vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 vendor/lib/liboemcrypto.so
 vendor/lib/librpmb.so
+vendor/lib/libssd.so
 vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
-vendor/lib/libWVphoneAPI.so
 vendor/lib/libWVStreamControlAPI_L1.so
 
 # DRM firmware
@@ -260,6 +288,9 @@ vendor/firmware/widevine.b02
 vendor/firmware/widevine.b03
 vendor/firmware/widevine.mdt
 
+# Project Fi
+-app/Tycho/Tycho.apk:app/Tycho/Tycho.apk:PRESIGNED
+
 # Graphics
 vendor/lib/egl/eglsubAndroid.so
 vendor/lib/egl/eglSubDriverAndroid.so
@@ -267,6 +298,7 @@ vendor/lib/egl/libEGL_adreno.so
 vendor/lib/egl/libGLESv1_CM_adreno.so
 vendor/lib/egl/libGLESv2_adreno.so
 vendor/lib/egl/libq3dtools_adreno.so
+vendor/lib/egl/libq3dtools_esx.so
 vendor/lib/libadreno_utils.so
 vendor/lib/libbccQTI.so
 vendor/lib/libC2D2.so
@@ -287,12 +319,10 @@ vendor/firmware/a420_pm4.fw
 
 # GPS
 etc/flp.conf
-etc/sap.conf
 lib/hw/gps.msm8084.so
 lib/libgps.utils.so
 lib/libloc_core.so
 lib/libloc_eng.so
-vendor/bin/gsiff_daemon
 vendor/lib/hw/activity_recognition.msm8084.so
 vendor/lib/hw/flp.msm8084.so
 vendor/lib/libgeofence.so
@@ -300,6 +330,42 @@ vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
 vendor/lib/libloc_api_v02.so
 vendor/lib/libloc_ds_api.so
+
+# IMS/HD Voice
+-app/atfwd/atfwd.apk
+-app/ims/ims.apk
+lib/libimscamera_jni.so:app/ims/lib/arm/libimscamera_jni.so
+lib/libimsmedia_jni.so:app/ims/lib/arm/libimsmedia_jni.so
+bin/ATFWD-daemon
+bin/imsdatadaemon
+bin/imsqmidaemon
+etc/permissions/com.verizon.hardware.telephony.ehrpd.xml
+etc/permissions/com.verizon.hardware.telephony.lte.xml
+etc/permissions/com.verizon.ims.xml
+etc/permissions/rcsimssettings.xml
+etc/permissions/rcsservice.xml
+-framework/com.verizon.hardware.telephony.ehrpd.jar:PRESIGNED
+-framework/com.verizon.hardware.telephony.lte.jar:PRESIGNED
+-framework/com.verizon.ims.jar:PRESIGNED
+-framework/rcsimssettings.jar:PRESIGNED
+-framework/rcsservice.jar:PRESIGNED
+lib/libimscamera_jni.so
+lib/libimsmedia_jni.so
+vendor/lib/lib-dplmedia.so
+vendor/lib/lib-imsSDP.so
+vendor/lib/lib-imsdpl.so
+vendor/lib/lib-imsqimf.so
+vendor/lib/lib-imsrcs.so
+vendor/lib/lib-imss.so
+vendor/lib/lib-imsvt.so
+vendor/lib/lib-imsxml.so
+vendor/lib/lib-rcsimssjni.so
+vendor/lib/lib-rcsjni.so
+vendor/lib/lib-rtpcommon.so
+vendor/lib/lib-rtpcore.so
+vendor/lib/lib-rtpdaemoninterface.so
+vendor/lib/lib-rtpsl.so
+vendor/lib/libvcel.so
 
 # Keymaster firmware
 vendor/firmware/keymaster/keymaster.b00
@@ -313,25 +379,11 @@ bin/mpdecision
 
 # Qualcomm framework
 bin/irsc_util
-bin/qmi-framework-tests/qmi_ping_clnt_test_0000
-bin/qmi-framework-tests/qmi_ping_clnt_test_0001
-bin/qmi-framework-tests/qmi_ping_clnt_test_1000
-bin/qmi-framework-tests/qmi_ping_clnt_test_1001
-bin/qmi-framework-tests/qmi_ping_clnt_test_2000
-bin/qmi-framework-tests/qmi_ping_svc
-bin/qmi-framework-tests/qmi_ping_test
-bin/qmi-framework-tests/qmi_test_service_clnt_test_0000
-bin/qmi-framework-tests/qmi_test_service_clnt_test_0001
-bin/qmi-framework-tests/qmi_test_service_clnt_test_1000
-bin/qmi-framework-tests/qmi_test_service_clnt_test_1001
-bin/qmi-framework-tests/qmi_test_service_clnt_test_2000
-bin/qmi-framework-tests/qmi_test_service_test
-etc/qmi_fw.conf
 vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
 vendor/lib/libdsutils.so
-vendor/lib/libidl.so
 vendor/lib/libqcci_legacy.so
+vendor/lib/libidl.so
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
 vendor/lib/libqmi.so
@@ -347,22 +399,21 @@ vendor/lib/libqmimotext.so
 bin/bridgemgrd
 bin/ks
 bin/mdm_helper
+bin/mdm_helper_proxy
 bin/netmgrd
 bin/qmi_motext_hook
 #bin/qmi_simple_ril_test
 bin/qmuxd
 bin/radish
 bin/tcmd_mini
-etc/permissions/org.simalliance.openmobileapi.xml
--framework/org.simalliance.openmobileapi.jar
 lib/libdetectmodem.so
 lib/libmdmdetect.so
-lib/librmnetctl.so
 vendor/lib/libconfigdb.so
 vendor/lib/libmdmcutback.so
 vendor/lib/libnetmgr.so
 vendor/lib/libril-qc-qmi-1.so
 vendor/lib/libril-qcril-hook-oem.so
+vendor/lib/libsysutils_local.so
 vendor/lib/libxml.so
 
 # Sensors
@@ -386,12 +437,20 @@ vendor/lib/libTimeService.so
 
 # Touch firmware
 vendor/firmware/atmel-a432-14061601-0102aa-shamu-p1.tdat
-vendor/firmware/atmel-a432-14101503-0103aa-shamu.tdat
+vendor/firmware/atmel-a432-14103001-0103aa-shamu.tdat
 
 #USB
 bin/port-bridge
 bin/usbhub
 bin/usbhub_init
+
+# Vzw
+-app/VZWAPNLib/VZWAPNLib.apk:app/VZWAPNLib/VZWAPNLib.apk:PRESIGNED
+etc/permissions/com.motorola.DirectedSMSProxy.xml
+etc/permissions/com.vzw.vzwapnlib.xml
+-priv-app/AppDirectedSMSProxy/AppDirectedSMSProxy.apk
+-priv-app/MotoSignatureApp/MotoSignatureApp.apk:priv-app/MotoSignatureApp/MotoSignatureApp.apk:PRESIGNED
+-priv-app/VZWAPNService/VZWAPNService.apk:priv-app/VZWAPNService/VZWAPNService.apk:PRESIGNED
 
 # Venus (media) firmware
 vendor/firmware/venus.b00
@@ -420,8 +479,8 @@ etc/firmware/vpu.mdt
 
 # Voice recognition
 etc/permissions/com.motorola.triggerenroll.xml
--priv-app/TriggerEnroll/TriggerEnroll.apk
--priv-app/TriggerTrainingService/TriggerTrainingService.apk
+-priv-app/TriggerEnroll/TriggerEnroll.apk:priv-app/TriggerEnroll/TriggerEnroll.apk:PRESIGNED
+-priv-app/TriggerTrainingService/TriggerTrainingService.apk:priv-app/TriggerTrainingService/TriggerTrainingService.apk:PRESIGNED
 lib/librecoglib.so
 lib/libsupermodel.so
 lib/libtrainingcheck.so
@@ -432,5 +491,6 @@ vendor/firmware/aonvr2.bin
 
 # WiFi
 vendor/firmware/bcm20795_firmware.ncd
-vendor/firmware/bcm4354A2.hcd
-xbin/wlutil
+
+#Carrier Services
+-priv-app/CarrierServices/CarrierServices.apk:priv-app/CarrierServices/CarrierServices.apk:PRESIGNED

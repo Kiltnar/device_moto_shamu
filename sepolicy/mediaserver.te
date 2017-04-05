@@ -15,5 +15,6 @@ unix_socket_connect(mediaserver, adspd, adspd)
 allow mediaserver audio_cutback_data_file:dir search;
 allow mediaserver audio_cutback_data_file:sock_file write;
 
-# TODO b/17015082
-allow mediaserver shell_data_file:dir search;
+# needed for widevine classic
+allow mediaserver tee_device:chr_file { ioctl open read write };
+

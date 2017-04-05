@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2013, The Linux Foundataion. All rights reserved.
+/* Copyright (c) 2012-2015, The Linux Foundataion. All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions are
@@ -65,6 +65,9 @@ namespace qcamera {
 #ifndef FALSE
 #define FALSE 0
 #endif
+
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 /* Time related macros */
 typedef int64_t nsecs_t;
@@ -149,7 +152,7 @@ public:
     int flush();
 
     int setFrameParameters(camera3_capture_request_t *request,
-            cam_stream_ID_t streamID, uint32_t snapshotStreamId);
+            cam_stream_ID_t streamID, int blob_request, uint32_t snapshotStreamId);
     int32_t setReprocParameters(camera3_capture_request_t *request,
             metadata_buffer_t *reprocParam, uint32_t snapshotStreamId);
     int translateToHalMetadata(const camera3_capture_request_t *request,
@@ -205,6 +208,7 @@ private:
 
     int validateCaptureRequest(camera3_capture_request_t *request);
     int validateStreamDimensions(camera3_stream_configuration_t *streamList);
+    int validateStreamRotations(camera3_stream_configuration_t *streamList);
     void deriveMinFrameDuration();
     int32_t handlePendingReprocResults(uint32_t frame_number);
     int64_t getMinFrameDuration(const camera3_capture_request_t *request);
@@ -223,11 +227,17 @@ private:
     int queueReprocMetadata(metadata_buffer_t *metadata);
     void extractJpegMetadata(CameraMetadata& jpegMetadata,
             const camera3_capture_request_t *request);
+    bool isSupportChannelNeeded(camera3_stream_configuration_t *streamList,
+        cam_stream_size_info_t stream_config_info);
 public:
     cam_dimension_t calcMaxJpegDim();
     bool needOnlineRotation();
     int getJpegQuality();
     QCamera3Exif *getExifData();
+    static void getFlashInfo(const int cameraId,
+            bool& hasFlash,
+            char (&flashNode)[QCAMERA_MAX_FILEPATH_LENGTH]);
+
 private:
     camera3_device_t   mCameraDevice;
     uint8_t            mCameraId;
@@ -239,7 +249,6 @@ private:
 
     const camera3_callback_ops_t *mCallbackOps;
 
-    camera3_stream_t *mInputStream;
     QCamera3MetadataChannel *mMetadataChannel;
     QCamera3PicChannel *mPictureChannel;
     QCamera3RawChannel *mRawChannel;
@@ -252,6 +261,7 @@ private:
     bool mEnableRawDump;
     QCamera3HeapMemory *mParamHeap;
     metadata_buffer_t* mParameters;
+    metadata_buffer_t* mPrevParameters;
     bool m_bWNROn;
     bool m_bIsVideo;
     bool m_bIs4KVideo;
@@ -296,6 +306,8 @@ private:
         uint32_t num_buffers;
         // List of pending buffers
         List<PendingBufferInfo> mPendingBufferList;
+        // Last frame number requested
+        uint32_t last_frame_number;
     } PendingBuffersMap;
 
     typedef struct {
@@ -331,6 +343,7 @@ private:
     const camera_module_callbacks_t *mCallbacks;
 
     uint8_t mCaptureIntent;
+    cam_stream_size_info_t mStreamConfigInfo;
 
     static const QCameraMap EFFECT_MODES_MAP[];
     static const QCameraMap WHITE_BALANCE_MODES_MAP[];

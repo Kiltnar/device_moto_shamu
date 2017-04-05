@@ -18,10 +18,7 @@
 /dev/ttyHS3                    u:object_r:adspd_device:s0
 
 #Serial console
-/dev/ttyHSL0                   u:object_r:tty_device:s0
-
-# STOPSHIP b/16455932
-/dev/vfsspi                    u:object_r:fingerprint_device:s0
+/dev/ttyHSL0                   u:object_r:console_device:s0
 
 # GPU device
 /dev/kgsl-3d0                  u:object_r:gpu_device:s0
@@ -34,6 +31,9 @@
 # factory reset protection partition
 /dev/block/platform/msm_sdcc\.1/by-name/frp           u:object_r:frp_block_device:s0
 
+# /persist
+/dev/block/platform/msm_sdcc\.1/by-name/persist   u:object_r:persist_block_device:s0
+
 # mdm1hob, mdm1dhob
 /dev/block/platform/msm_sdcc.1/by-name/mdm1hob   u:object_r:modem_hob_block_device:s0
 /dev/block/platform/msm_sdcc.1/by-name/mdm1dhob  u:object_r:modem_hob_block_device:s0
@@ -44,11 +44,20 @@
 /dev/block/platform/msm_sdcc.1/by-name/mdm1m9kefs3  u:object_r:efs_block_device:s0
 /dev/block/platform/msm_sdcc.1/by-name/mdm1m9kefsc  u:object_r:efs_block_device:s0
 
+/dev/block/platform/msm_sdcc\.1/by-name/system       u:object_r:system_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/recovery     u:object_r:recovery_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/boot         u:object_r:boot_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/userdata     u:object_r:userdata_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/metadata     u:object_r:metadata_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/cache        u:object_r:cache_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/misc         u:object_r:misc_block_device:s0
+
 # Customer Identifier
 /dev/block/platform/msm_sdcc.1/by-name/cid          u:object_r:cid_block_device:s0
 
 # tee devices
 /dev/block/mmcblk0rpmb          u:object_r:drm_block_device:s0
+/dev/block/mmcblk0p34           u:object_r:drm_block_device:s0
 
 # Used by keystore to access trustzone
 /dev/qseecom                   u:object_r:tee_device:s0
@@ -59,8 +68,8 @@
 /dev/ramdump_.*                 u:object_r:ramdump_device:s0
 
 # MSM camera related
-/dev/media([0-9])+              u:object_r:camera_device:s0
-/dev/jpeg[0-9]*                 u:object_r:camera_device:s0
+/dev/media([0-9])+              u:object_r:video_device:s0
+/dev/jpeg[0-9]*                 u:object_r:video_device:s0
 
 /dev/bcm2079x-i2c                  u:object_r:nfc_device:s0
 
@@ -75,6 +84,11 @@
 /dev/socket/sensor_ctl_socket   u:object_r:sensors_socket:s0
 /dev/socket/mpdecision(/.*)?    u:object_r:mpdecision_socket:s0
 
+#Add context for IMS Socket node
+/dev/socket/ims_qmid            u:object_r:ims_socket:s0
+/dev/socket/ims_datad           u:object_r:ims_socket:s0
+/dev/socket/ims_rtpd            u:object_r:ims_socket:s0
+
 # Shared memory log
 /dev/smem_log                   u:object_r:shared_log_device:s0
 
@@ -86,9 +100,6 @@
 # Qualcomm MSM Audio devices
 /dev/msm_acdb                      u:object_r:audio_device:s0
 /dev/msm_rtac                      u:object_r:audio_device:s0
-
-# Real-time clock
-/dev/rtc0                       u:object_r:rtc:s0
 
 # Qualcomm MSM Interface (QMI) devices
 /dev/socket/qmux_audio(/.*)?           u:object_r:qmuxd_socket:s0
@@ -112,6 +123,7 @@
 /system/bin/bdAddrLoader        u:object_r:bluetooth_loader_exec:s0
 /system/bin/bridgemgrd          u:object_r:bridge_exec:s0
 /system/vendor/bin/gsiff_daemon u:object_r:gsiffd_exec:s0
+/system/bin/init\.mmi\.touch\.sh u:object_r:mmi_touch_sh_exec:s0
 /system/bin/irsc_util           u:object_r:irsc_util_exec:s0
 /system/bin/ks                  u:object_r:mdm_helper_exec:s0
 /system/bin/mdm_helper          u:object_r:mdm_helper_exec:s0
@@ -126,6 +138,7 @@
 /system/bin/thermal-engine      u:object_r:thermald_exec:s0
 /system/bin/time_daemon         u:object_r:time_exec:s0
 /system/bin/tcmd_mini           u:object_r:tcmd_exec:s0
+/system/bin/ATFWD-daemon        u:object_r:atfwd_exec:s0
 
 # Bluetooth
 /sys/class/rfkill/rfkill0/state u:object_r:sysfs_bluetooth_writable:s0
@@ -136,6 +149,16 @@
 
 # Sysfs files used by qmuxd
 /sys/devices/virtual/smdpkt/smdcntl([0-9])+/open_timeout u:object_r:sysfs_smdcntl_open_timeout:s0
+
+/sys/devices/f9200000\.ssusb(/.*)?                       u:object_r:sysfs_usb:s0
+
+# mmi_touch related /sys files
+/sys/devices/f9966000\.i2c/i2c-1/1-004a(/.*)?            u:object_r:sysfs_mmi_touch:s0
+
+/sys/devices/f9925000\.i2c/i2c-0/0-001c/power_supply/battery/capacity    u:object_r:sysfs_batteryinfo:s0
+/sys/devices/f9925000\.i2c/i2c-0/0-001c/power_supply/battery/cycle_count u:object_r:sysfs_batteryinfo:s0
+/sys/devices/f9925000\.i2c/i2c-0/0-001c/power_supply/battery/temp        u:object_r:sysfs_batteryinfo:s0
+/sys/devices/f9964000\.i2c/i2c-8/8-0048/temp1_input                      u:object_r:sysfs_batteryinfo:s0
 
 # Context for mpdecision
 /sys/module/msm_thermal/core_control/cpus_offlined              u:object_r:sysfs_mpdecision:s0
@@ -148,21 +171,12 @@
 /sys/devices/cycapsense_prog.1/cycapsense_fw             u:object_r:sysfs_capsense_update:s0
 /sys/devices/mmi_sar_ctrl.[0-9]*/sar_wifi                u:object_r:sysfs_sar_wifi:s0
 
-# TapToWake
-/sys/devices/f9966000.i2c/i2c-1/1-004a/tsp               u:object_r:tap2wake_dev:s0
+# wifi mac address
+/sys/devices/virtual/net/wlan0/address                   u:object_r:sysfs_mac_address:s0
 
-# for Settings' access to VibratorHW
-/sys/vibrator/pwmvalue                                   u:object_r:sysfs_vibrator:s0
+/system/bin/imsdatadaemon                       u:object_r:ims_exec:s0
+/system/bin/imsqmidaemon                        u:object_r:ims_exec:s0
+/system/bin/ims_rtp_daemon                      u:object_r:ims_exec:s0
 
-# for Settings' access to DisplayColorCalibration
-/sys/devices/platform/kcal_ctrl.0/kcal                   u:object_r:sysfs_display:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_enable            u:object_r:sysfs_display:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_cont              u:object_r:sysfs_display:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_hue               u:object_r:sysfs_display:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_invert            u:object_r:sysfs_display:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_min               u:object_r:sysfs_display:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_sat               u:object_r:sysfs_display:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_val               u:object_r:sysfs_display:s0
-
-# Sunlight Mode
-/sys/devices/virtual/graphics/fb0/hbm                    u:object_r:sysfs_display:s0
+/dev/socket/cnd  u:object_r:cnd_socket:s0
+/system/bin/cnd  u:object_r:cnd_exec:s0

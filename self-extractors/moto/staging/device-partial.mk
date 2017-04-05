@@ -18,8 +18,9 @@ PRODUCT_COPY_FILES := \
     vendor/moto/shamu/proprietary/ramdump:system/bin/ramdump:moto \
     vendor/moto/shamu/proprietary/tcmd_mini:system/bin/tcmd_mini:moto \
     vendor/moto/shamu/proprietary/Bluetooth_cal.acdb:system/etc/Bluetooth_cal.acdb:moto \
-    vendor/moto/shamu/proprietary/FIT_V12.cfg:system/etc/diag/FIT_V12.cfg:moto \
-    vendor/moto/shamu/proprietary/FIT_V12.cfg:system/etc/diag/mdm/FIT_V12.cfg:moto \
+    vendor/moto/shamu/proprietary/FIT_V16_2_volte_full_ip.cfg:system/etc/diag/mdm/FIT_V16_2_volte_full_ip.cfg:moto \
+    vendor/moto/shamu/proprietary/FIT_V16_3_audio.cfg:system/etc/diag/mdm/FIT_V16_3_audio.cfg:moto \
+    vendor/moto/shamu/proprietary/FIT_V16_1.cfg:system/etc/diag/mdm/FIT_V16_1.cfg:moto \
     vendor/moto/shamu/proprietary/sensors_qxdm.cfg:system/etc/diag/mdm/sensors_qxdm.cfg:moto \
     vendor/moto/shamu/proprietary/sensors_qxdm.cfg:system/etc/diag/sensors_qxdm.cfg:moto \
     vendor/moto/shamu/proprietary/vpu.b00:system/etc/firmware/vpu.b00:moto \
@@ -42,16 +43,15 @@ PRODUCT_COPY_FILES := \
     vendor/moto/shamu/proprietary/Handset_cal.acdb:system/etc/Handset_cal.acdb:moto \
     vendor/moto/shamu/proprietary/Hdmi_cal.acdb:system/etc/Hdmi_cal.acdb:moto \
     vendor/moto/shamu/proprietary/Headset_cal.acdb:system/etc/Headset_cal.acdb:moto \
-    vendor/moto/shamu/proprietary/org.simalliance.openmobileapi.xml:system/etc/permissions/org.simalliance.openmobileapi.xml:moto \
     vendor/moto/shamu/proprietary/Speaker_cal.acdb:system/etc/Speaker_cal.acdb:moto \
-    vendor/moto/shamu/proprietary/org.simalliance.openmobileapi.jar:system/framework/org.simalliance.openmobileapi.jar:moto \
     vendor/moto/shamu/proprietary/libadspd-jni.so:system/lib/libadspd-jni.so:moto \
     vendor/moto/shamu/proprietary/libadspd.so:system/lib/libadspd.so:moto \
     vendor/moto/shamu/proprietary/librecoglib.so:system/lib/librecoglib.so:moto \
     vendor/moto/shamu/proprietary/libsupermodel.so:system/lib/libsupermodel.so:moto \
+    vendor/moto/shamu/proprietary/libxml2.so:system/lib/libxml2.so:moto \
     vendor/moto/shamu/proprietary/acdb.mbn:system/vendor/firmware/acdb.mbn:moto \
     vendor/moto/shamu/proprietary/atmel-a432-14061601-0102aa-shamu-p1.tdat:system/vendor/firmware/atmel-a432-14061601-0102aa-shamu-p1.tdat:moto \
-    vendor/moto/shamu/proprietary/atmel-a432-14101503-0103aa-shamu.tdat:system/vendor/firmware/atmel-a432-14101503-0103aa-shamu.tdat:moto \
+    vendor/moto/shamu/proprietary/atmel-a432-14103001-0103aa-shamu.tdat:system/vendor/firmware/atmel-a432-14103001-0103aa-shamu.tdat:moto \
     vendor/moto/shamu/proprietary/left.boost.music.eq:system/vendor/firmware/left.boost.music.eq:moto \
     vendor/moto/shamu/proprietary/left.boost_music_table.preset:system/vendor/firmware/left.boost_music_table.preset:moto \
     vendor/moto/shamu/proprietary/left.boost_n1b12.patch:system/vendor/firmware/left.boost_n1b12.patch:moto \
@@ -74,6 +74,7 @@ PRODUCT_COPY_FILES := \
     vendor/moto/shamu/proprietary/libmdmcutback.so:system/vendor/lib/libmdmcutback.so:moto \
     vendor/moto/shamu/proprietary/libmotext_inf.so:system/vendor/lib/libmotext_inf.so:moto \
     vendor/moto/shamu/proprietary/libqmimotext.so:system/vendor/lib/libqmimotext.so:moto \
+    vendor/moto/shamu/proprietary/libsysutils_local.so:system/vendor/lib/libsysutils_local.so:moto \
     vendor/moto/shamu/proprietary/lts_en_us_9_5_2b.raw:system/vendor/moto/audiomonitor/sensory/lts_en_us_9_5_2b.raw:moto \
     vendor/moto/shamu/proprietary/nn_de_mfcc_16k_15_big_250_v3_4.raw:system/vendor/moto/audiomonitor/sensory/nn_de_mfcc_16k_15_big_250_v3_4.raw:moto \
     vendor/moto/shamu/proprietary/nn_en_uk_mfcc_16k_15_big_250_v2_2.raw:system/vendor/moto/audiomonitor/sensory/nn_en_uk_mfcc_16k_15_big_250_v2_2.raw:moto \

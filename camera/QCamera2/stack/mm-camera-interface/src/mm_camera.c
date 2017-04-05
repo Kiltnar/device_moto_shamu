@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -254,14 +254,15 @@ int32_t mm_camera_open(mm_camera_obj_t *my_obj)
 
     do{
         n_try--;
+        errno = 0;
         my_obj->ctrl_fd = open(dev_name, O_RDWR | O_NONBLOCK);
         CDBG("%s:  ctrl_fd = %d, errno == %d", __func__, my_obj->ctrl_fd, errno);
-        if((my_obj->ctrl_fd >= 0) || (errno != EIO) || (n_try <= 0 )) {
+        if((my_obj->ctrl_fd >= 0) || (errno != EIO && errno != ETIMEDOUT) || (n_try <= 0 )) {
             CDBG_HIGH("%s:  opened, break out while loop", __func__);
             break;
         }
-        CDBG("%s:failed with I/O error retrying after %d milli-seconds",
-             __func__, sleep_msec);
+        ALOGE("%s:Failed with %s error, retrying after %d milli-seconds",
+             __func__, strerror(errno), sleep_msec);
         usleep(sleep_msec * 1000);
     }while (n_try > 0);
 
@@ -375,6 +376,35 @@ int32_t mm_camera_close(mm_camera_obj_t *my_obj)
     pthread_mutex_destroy(&my_obj->evt_lock);
     pthread_cond_destroy(&my_obj->evt_cond);
 
+    pthread_mutex_unlock(&my_obj->cam_lock);
+    return 0;
+}
+
+/*===========================================================================
+ * FUNCTION   : mm_camera_close_fd
+ *
+ * DESCRIPTION: close the ctrl_fd and socket fd in case of an error so that
+ *              the backend will close
+ *              Do NOT close or release any HAL resources since a close_camera
+ *              has not been called yet.
+ * PARAMETERS :
+ *   @my_obj   : ptr to a camera object
+ *   @event    : event to be queued
+ *
+ * RETURN     : int32_t type of status
+ *              0  -- success
+ *              -1 -- failure
+ *==========================================================================*/
+int32_t mm_camera_close_fd(mm_camera_obj_t *my_obj)
+{
+    if(my_obj->ctrl_fd >= 0) {
+        close(my_obj->ctrl_fd);
+        my_obj->ctrl_fd = -1;
+    }
+    if(my_obj->ds_fd >= 0) {
+        mm_camera_socket_close(my_obj->ds_fd);
+        my_obj->ds_fd = -1;
+    }
     pthread_mutex_unlock(&my_obj->cam_lock);
     return 0;
 }
@@ -1546,11 +1576,26 @@ void mm_camera_util_wait_for_event(mm_camera_obj_t *my_obj,
                                    uint32_t evt_mask,
                                    int32_t *status)
 {
+    int32_t rc = 0;
+    struct timespec ts;
+
     pthread_mutex_lock(&my_obj->evt_lock);
     while (!(my_obj->evt_rcvd.server_event_type & evt_mask)) {
-        pthread_cond_wait(&my_obj->evt_cond, &my_obj->evt_lock);
+        clock_gettime(CLOCK_REALTIME, &ts);
+        ts.tv_sec += WAIT_TIMEOUT_IN_SEC;
+        rc = pthread_cond_timedwait(&my_obj->evt_cond, &my_obj->evt_lock, &ts);
+        if (rc) {
+            ALOGE("%s: pthread_cond_timedwait of evt_mask 0x%x fails %d",
+                    __func__, evt_mask, rc);
+            break;
+        }
     }
-    *status = my_obj->evt_rcvd.status;
+    if (!rc) {
+        *status = my_obj->evt_rcvd.status;
+    } else {
+        *status = MSM_CAMERA_STATUS_FAIL;
+    }
+
     /* reset local storage for recieved event for next event */
     memset(&my_obj->evt_rcvd, 0, sizeof(mm_camera_event_t));
     pthread_mutex_unlock(&my_obj->evt_lock);

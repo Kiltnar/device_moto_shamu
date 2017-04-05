@@ -131,6 +131,8 @@ void *get_pointer_of(cam_intf_parm_type_t meta_id,
             return POINTER_OF_META(CAM_INTF_META_NOISE_REDUCTION_MODE, metadata);
         case CAM_INTF_META_NOISE_REDUCTION_STRENGTH:
             return POINTER_OF_META(CAM_INTF_META_NOISE_REDUCTION_STRENGTH, metadata);
+        case CAM_INTF_META_EFFECTIVE_EXPOSURE_FACTOR:
+            return POINTER_OF_META(CAM_INTF_META_EFFECTIVE_EXPOSURE_FACTOR, metadata);
         case CAM_INTF_META_SCALER_CROP_REGION:
             return POINTER_OF_META(CAM_INTF_META_SCALER_CROP_REGION, metadata);
         case CAM_INTF_META_SCENE_FLICKER:
@@ -339,6 +341,10 @@ void *get_pointer_of(cam_intf_parm_type_t meta_id,
             return POINTER_OF_META(CAM_INTF_PARM_CDS_MODE, metadata);
         case CAM_INTF_PARM_ROTATION:
           return POINTER_OF_META(CAM_INTF_PARM_ROTATION, metadata);
+        case CAM_INTF_META_USE_AV_TIMER:
+            return POINTER_OF_META(CAM_INTF_META_USE_AV_TIMER, metadata);
+        case CAM_INTF_META_DAEMON_RESTART:
+          return POINTER_OF_META(CAM_INTF_META_DAEMON_RESTART, metadata);
         default:
             return NULL;
     }
@@ -446,6 +452,8 @@ uint32_t get_size_of(cam_intf_parm_type_t param_id)
             return SIZE_OF_PARAM(CAM_INTF_META_NOISE_REDUCTION_MODE, metadata);
         case CAM_INTF_META_NOISE_REDUCTION_STRENGTH:
             return SIZE_OF_PARAM(CAM_INTF_META_NOISE_REDUCTION_STRENGTH, metadata);
+        case CAM_INTF_META_EFFECTIVE_EXPOSURE_FACTOR:
+            return SIZE_OF_PARAM(CAM_INTF_META_EFFECTIVE_EXPOSURE_FACTOR, metadata);
         case CAM_INTF_META_SCALER_CROP_REGION:
             return SIZE_OF_PARAM(CAM_INTF_META_SCALER_CROP_REGION, metadata);
         case CAM_INTF_META_SCENE_FLICKER:
@@ -654,6 +662,10 @@ uint32_t get_size_of(cam_intf_parm_type_t param_id)
             return SIZE_OF_PARAM(CAM_INTF_PARM_CDS_MODE, metadata);
         case CAM_INTF_PARM_ROTATION:
           return SIZE_OF_PARAM(CAM_INTF_PARM_ROTATION, metadata);
+        case CAM_INTF_META_USE_AV_TIMER:
+            return SIZE_OF_PARAM(CAM_INTF_META_USE_AV_TIMER, metadata);
+        case CAM_INTF_META_DAEMON_RESTART:
+          return SIZE_OF_PARAM(CAM_INTF_META_DAEMON_RESTART, metadata);
         default:
             return 0;
     }

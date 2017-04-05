@@ -474,7 +474,6 @@
 		<ctl name="SLIM_1_TX Channels" value="One" />
 		<ctl name="Voice Stub Tx Mixer SLIM_1_TX" value="1" />
 		<ctl name="QUAT_MI2S_RX_Voice Mixer Voice Stub" value="1" />
-		<ctl name="QUAT_MI2S_RX Port Mixer SLIM_1_TX" value="1" />
 		<ctl name="Voice Stub Tx Mixer STUB_TX_HL" value="1" />
 		<ctl name="Voice Stub Tx Mixer STUB_1_TX_HL" value="1" />
 	</path>
@@ -484,7 +483,6 @@
 		<ctl name="SLIM_3_RX Channels" value="One" />
 		<ctl name="SLIMBUS_3_RX_Voice Mixer Voice Stub" value="1" />
 		<ctl name="Voice Stub Tx Mixer QUAT_MI2S_TX" value="1" />
-		<ctl name="SLIMBUS_3_RX Port Mixer QUAT_MI2S_TX" value="1" />
 	</path>
 
 	<path name="voice-call bt-sco">
@@ -493,11 +491,8 @@
 		<ctl name="SLIMBUS_1_RX Mixer Voice Stub" value="1" />
 		<ctl name="Voice Stub Tx Mixer SLIM_1_TX" value="1" />
 		<ctl name="AUX_PCM_RX_Voice Mixer Voice Stub" value="1" />
-		<ctl name="SLIMBUS_1_RX Port Mixer AUX_PCM_UL_TX" value="1" />
-		<ctl name="AUX_PCM_RX Port Mixer SLIM_1_TX" value="1" />
 		<ctl name="SLIM_3_RX Channels" value="One" />
 		<ctl name="SLIMBUS_3_RX_Voice Mixer Voice Stub" value="1" />
-		<ctl name="SLIMBUS_3_RX Port Mixer AUX_PCM_RX" value="1" />
 	</path>
 
 	<path name="voice-call bt-sco-wb">
@@ -514,10 +509,7 @@
         <ctl name="SLIMBUS_1_RX Mixer Voice Stub" value="1" />
         <ctl name="Voice Stub Tx Mixer SLIM_1_TX" value="1" />
         <ctl name="AFE_PCM_RX_Voice Mixer Voice Stub" value="1" />
-        <ctl name="SLIMBUS_1_RX Port Mixer AFE_PCM_TX" value="1" />
-        <ctl name="AFE_PCM_RX Port Mixer SLIM_1_TX" value="1" />
         <ctl name="SLIMBUS_3_RX_Voice Mixer Voice Stub" value="1" />
-        <ctl name="SLIMBUS_3_RX Port Mixer AFE_PCM_RX" value="1" />
     </path>
 
 	<path name="voice2-call">
@@ -532,11 +524,8 @@
 		<ctl name="SLIMBUS_1_RX Mixer Voice2 Stub" value="1" />
 		<ctl name="Voice2 Stub Tx Mixer SLIM_1_TX" value="1" />
 		<ctl name="AUX_PCM_RX_Voice Mixer Voice2 Stub" value="1" />
-		<ctl name="SLIMBUS_1_RX Port Mixer AUX_PCM_UL_TX" value="1" />
-		<ctl name="AUX_PCM_RX Port Mixer SLIM_1_TX" value="1" />
 		<ctl name="SLIM_3_RX Channels" value="One" />
 		<ctl name="SLIMBUS_3_RX_Voice Mixer Voice2 Stub" value="1" />
-		<ctl name="SLIMBUS_3_RX Port Mixer AUX_PCM_RX" value="1" />
 	</path>
 
 	<path name="voice2-call bt-sco-wb">
@@ -552,11 +541,8 @@
         <ctl name="Voice2 Stub Tx Mixer AFE_PCM_TX" value="1" />
         <ctl name="SLIMBUS_1_RX Mixer Voice2 Stub" value="1" />
         <ctl name="Voice2 Stub Tx Mixer SLIM_1_TX" value="1" />
-        <ctl name="AFE_PCM_RX_Voice Mixer Voice2 Stub" value="1" />
-        <ctl name="SLIMBUS_1_RX Port Mixer AFE_PCM_TX" value="1" />
         <ctl name="AFE_PCM_RX Port Mixer SLIM_1_TX" value="1" />
         <ctl name="SLIMBUS_3_RX_Voice Mixer Voice2 Stub" value="1" />
-        <ctl name="SLIMBUS_3_RX Port Mixer AFE_PCM_RX" value="1" />
     </path>
 
 	<path name="volte-call">
@@ -571,11 +557,8 @@
 		<ctl name="SLIMBUS_1_RX Mixer VoLTE Stub" value="1" />
 		<ctl name="VoLTE Stub Tx Mixer SLIM_1_TX" value="1" />
 		<ctl name="AUX_PCM_RX_Voice Mixer VoLTE Stub" value="1" />
-		<ctl name="SLIMBUS_1_RX Port Mixer AUX_PCM_UL_TX" value="1" />
-		<ctl name="AUX_PCM_RX Port Mixer SLIM_1_TX" value="1" />
 		<ctl name="SLIM_3_RX Channels" value="One" />
 		<ctl name="SLIMBUS_3_RX_Voice Mixer VoLTE Stub" value="1" />
-		<ctl name="SLIMBUS_3_RX Port Mixer AUX_PCM_RX" value="1" />
 	</path>
 
 	<path name="volte-call bt-sco-wb">
@@ -584,22 +567,20 @@
 		<path name="volte-call bt-sco" />
 	</path>
 
-	<path name="volte-call speaker">
+	<path name="volte-call handset">
 		<ctl name="SLIM_1 SampleRate" value="48000" />
 		<ctl name="SLIM_1_TX Channels" value="One" />
 		<ctl name="VoLTE Stub Tx Mixer SLIM_1_TX" value="1" />
 		<ctl name="QUAT_MI2S_RX_Voice Mixer VoLTE Stub" value="1" />
-		<ctl name="QUAT_MI2S_RX Port Mixer SLIM_1_TX" value="1" />
-		<ctl name="SLIM_3_RX Channels" value="One" />
-		<ctl name="SLIMBUS_3_RX_Voice Mixer VoLTE Stub" value="1" />
-		<ctl name="VoLTE Stub Tx Mixer QUAT_MI2S_TX" value="1" />
-		<ctl name="SLIMBUS_3_RX Port Mixer QUAT_MI2S_TX" value="1" />
 		<ctl name="VoLTE Stub Tx Mixer STUB_TX_HL" value="1" />
 		<ctl name="VoLTE Stub Tx Mixer STUB_1_TX_HL" value="1" />
 	</path>
 
-	<path name="volte-call handset">
-		<path name="volte-call speaker" />
+	<path name="volte-call speaker">
+		<path name="volte-call handset" />
+		<ctl name="SLIM_3_RX Channels" value="One" />
+		<ctl name="SLIMBUS_3_RX_Voice Mixer VoLTE Stub" value="1" />
+		<ctl name="VoLTE Stub Tx Mixer QUAT_MI2S_TX" value="1" />
 	</path>
 
     <path name="volte-call afe-proxy">
@@ -610,10 +591,7 @@
         <ctl name="SLIMBUS_1_RX Mixer VoLTE Stub" value="1" />
         <ctl name="VoLTE Stub Tx Mixer SLIM_1_TX" value="1" />
         <ctl name="AFE_PCM_RX_Voice Mixer VoLTE Stub" value="1" />
-        <ctl name="SLIMBUS_1_RX Port Mixer AFE_PCM_TX" value="1" />
-        <ctl name="AFE_PCM_RX Port Mixer SLIM_1_TX" value="1" />
         <ctl name="SLIMBUS_3_RX_Voice Mixer VoLTE Stub" value="1" />
-        <ctl name="SLIMBUS_3_RX Port Mixer AFE_PCM_RX" value="1" />
     </path>
 
 	<path name="incall-rec-uplink">
@@ -740,6 +718,15 @@
 		<ctl name="IIR1 INP1 MUX" value="DEC2" />
 	</path>
 
+        <!-- place holder for boosting gain in combo device -->
+        <path name="speaker-gain-default" />
+        <path name="spkr-gain-in-line-combo" />
+        <path name="spkr-gain-in-headphone-combo" />
+
+        <path name="speaker-safe-gain-default" />
+        <path name="spkr-safe-gain-in-line-combo" />
+        <path name="spkr-safe-gain-in-headphone-combo" />
+
 	<path name="speaker">
 		<ctl name="QUAT_MI2S_RX Channels" value="Two" />
 		<!-- Disable earpiece mode -->
@@ -751,6 +738,7 @@
 		<!-- Enable Mixers to power up Left and Right IC's -->
 		<ctl name="BOOST_STUB Right Mixer right" value="1" />
 		<ctl name="BOOST_STUB Left Mixer left" value="1" />
+                <path name="speaker-gain-default" />
 	</path>
 
 	<path name="speaker-reverse">
@@ -772,6 +760,7 @@
 		<ctl name="BOOST Right Ch Select" value="3" />
 		<!-- Enable Mixers to power up Right IC only -->
 		<ctl name="BOOST_STUB Right Mixer right" value="1" />
+                <path name="speaker-safe-gain-default" />
 	</path>
 
 	<path name="speaker-mic">
@@ -809,6 +798,16 @@
 		<ctl name="ADC5 Volume" value="0" />
 		<ctl name="ADC6 Volume" value="0" />
 	</path>
+
+    <path name="unprocessed-handset-mic">
+        <path name="adc3" />
+        <ctl name="ADC1 Volume" value="0" />
+        <ctl name="ADC2 Volume" value="0" />
+        <ctl name="ADC3 Volume" value="13" />
+        <ctl name="ADC4 Volume" value="0" />
+        <ctl name="ADC5 Volume" value="0" />
+        <ctl name="ADC6 Volume" value="0" />
+    </path>
 
 	<path name="headphones">
 		<ctl name="SLIM RX1 MUX" value="AIF1_PB" />
@@ -867,6 +866,9 @@
 
 	<path name="voice-speaker-mic">
 		<path name="speaker-mic" />
+	    <!-- port mixer controls are common to all voice verbs -->
+		<ctl name="QUAT_MI2S_RX Port Mixer SLIM_1_TX" value="1" />
+		<ctl name="SLIMBUS_3_RX Port Mixer QUAT_MI2S_TX" value="1" />
 	</path>
 
 	<path name="voice-headphones">
@@ -889,15 +891,38 @@
 		<ctl name="BOOST Right Ch Select" value="3" />
 		<ctl name="BOOST_STUB Right Mixer right" value="1" />
 		<ctl name="BOOST_STUB Left Mixer left" value="1" />
+                <path name="spkr-gain-in-headphone-combo" />
+	</path>
+
+	<path name="speaker-safe-and-headphones">
+		<path name="speaker-safe" />
+		<path name="headphones" />
+                <path name="spkr-safe-gain-in-headphone-combo" />
 	</path>
 
 	<path name="speaker-and-line">
 		<path name="speaker-and-headphones" />
+                <path name="spkr-gain-in-line-combo" />
+	</path>
+
+	<path name="speaker-safe-and-line">
+		<path name="speaker-safe-and-headphones" />
+                <path name="spkr-safe-gain-in-line-combo" />
 	</path>
 
 	<path name="voice-rec-mic">
 		<path name="handset-mic" />
 	</path>
+
+<path name="unprocessed-mic">
+    <path name="adc3" />
+    <ctl name="ADC1 Volume" value="0" />
+    <ctl name="ADC2 Volume" value="0" />
+    <ctl name="ADC3 Volume" value="3" />
+    <ctl name="ADC4 Volume" value="0" />
+    <ctl name="ADC5 Volume" value="0" />
+    <ctl name="ADC6 Volume" value="0" />
+</path>
 
 	<path name="camcorder-mic">
 		<path name="adc3" />
@@ -908,19 +933,25 @@
 	</path>
 
 	<path name="bt-sco-mic">
+		<ctl name="SLIMBUS_1_RX Port Mixer AUX_PCM_UL_TX" value="1" />
+		<ctl name="AUX_PCM_RX Port Mixer SLIM_1_TX" value="1" />
+		<ctl name="SLIMBUS_3_RX Port Mixer AUX_PCM_RX" value="1" />
 	</path>
 
 	<path name="bt-sco-headset-wb">
 	</path>
 
 	<path name="bt-sco-mic-wb">
+	    <path name="bt-sco-mic" />
 	</path>
 
 	<path name="usb-headset-mic">
 	</path>
 
 	<!-- Dual MIC devices -->
-	<path name="voice-dmic-ef">
+	<path name="dmic-endfire">
+	<!-- Port mixer is common bit for all voice verbs -->
+		<ctl name="QUAT_MI2S_RX Port Mixer SLIM_1_TX" value="1" />
 		<ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
 		<ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
 		<ctl name="AIF2_CAP Mixer SLIM TX9" value="1" />
@@ -940,20 +971,36 @@
 		<ctl name="ADC6 Volume" value="0" />
 	</path>
 
-	<path name="voice-speaker-dmic-ef">
-		<path name="voice-dmic-ef" />
+	<path name="speaker-dmic-endfire">
+		<path name="dmic-endfire" />
+	</path>
+
+	<path name="handset-stereo-dmic-ef">
+		<path name="speaker-dmic-endfire" />
+	</path>
+
+	<path name="speaker-stereo-dmic-ef">
+		<path name="speaker-dmic-endfire" />
 	</path>
 
 	<path name="voice-dmic-ef-tmus">
-		<path name="voice-dmic-ef" />
+		<path name="dmic-endfire" />
+	</path>
+
+	<path name="voice-dmic-ef">
+		<path name="dmic-endfire" />
+	</path>
+
+	<path name="voice-speaker-dmic-ef">
+		<path name="dmic-endfire" />
 	</path>
 
 	<path name="voice-rec-dmic-ef">
-		<path name="voice-dmic-ef" />
+		<path name="dmic-endfire" />
 	</path>
 
 	<path name="voice-rec-dmic-ef-fluence">
-		<path name="voice-dmic-ef" />
+		<path name="dmic-endfire" />
 	</path>
 
 	<!-- TTY devices -->
@@ -987,6 +1034,8 @@
 
 	<path name="voice-tty-hco-handset">
 		<ctl name="TTY Mode" value="HCO" />
+	    <!-- Port mixer is common bit for all voice verbs -->
+		<ctl name="QUAT_MI2S_RX Port Mixer SLIM_1_TX" value="1" />
 		<path name="voice-handset" />
 	</path>
 
@@ -1004,9 +1053,21 @@
 	</path>
 
     <path name="voice-rx">
+        <ctl name="SLIMBUS_1_RX Port Mixer AFE_PCM_TX" value="1" />
+        <ctl name="AFE_PCM_RX Port Mixer SLIM_1_TX" value="1" />
+        <ctl name="SLIMBUS_3_RX Port Mixer AFE_PCM_RX" value="1" />
     </path>
 
     <path name="voice-tx">
     </path>
 
+<path name="unprocessed-headset-mic">
+        <path name="headset-mic" />
+</path>
+
+<path name="unprocessed-stereo-mic">
+    <path name="speaker-dmic-endfire" />
+    <ctl name="ADC3 Volume" value="3" />
+    <ctl name="ADC4 Volume" value="3" />
+</path>
 </mixer>
