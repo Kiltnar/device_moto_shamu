@@ -50,7 +50,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -148,11 +147,6 @@ PRODUCT_PACKAGES += \
     libaudio-resampler
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    media.aac_51_output_enabled=true \
-    persist.audio.dualmic.config=endfire \
-    persist.audio.fluence.voicecall=true \
-    persist.audio.fluence.voicerec=false \
-    persist.audio.fluence.speaker=false \
     ro.audio.monitorRotation=true
 
 # RRM service
@@ -274,7 +268,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # LTE, CDMA, GSM/WCDMA
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=10 \
-    ro.telephony.get_imsi_from_sim=true \
     telephony.lteOnCdmaDevice=1
 
 # SIM based FSG loading & MCFG activation
@@ -289,10 +282,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Store correct IMSI when retreived from SIMRecords and use it for RuimRecords
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.get_imsi_from_sim=true
-
-# Allow tethering without provisioning app
-PRODUCT_PROPERTY_OVERRIDES += \
-    net.tethering.noprovisioning=true
 
 # Camera configuration
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \

@@ -106,11 +106,6 @@ TARGET_RECOVERY_FSTAB = device/moto/shamu/fstab.shamu
 # Ensure f2fstools are built
 TARGET_USERIMAGES_USE_F2FS := true
 
-# Ensure f2fstools are built
-ifeq ($(HOST_OS),linux)
-TARGET_USERIMAGES_USE_F2FS := true
-endif
-
 TARGET_RELEASETOOLS_EXTENSIONS := device/moto/shamu
 
 # Support Native Layer RF cutback
